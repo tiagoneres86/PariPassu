@@ -1,0 +1,30 @@
+Banco de dados Paripassu.
+Implementado em postgresql-9.3.5-3-windows-x64
+
+Login: postgres
+senha: 098!@#01
+
+--Database
+CREATE DATABASE "Paripassu"
+  WITH ENCODING='UTF8'
+       CONNECTION LIMIT=-1;
+
+COMMENT ON DATABASE "Paripassu"
+  IS 'Teste Paripassu';
+
+
+--Tabela de senha normal
+Create table normal (id serial, senha integer not null, status char(1));
+
+--Tabela de senha preferencial
+Create table preferencial (id serial, senha integer not null, status char(1));
+
+--Alguns SQL's
+select * from preferencial;
+select * from normal;
+insert into normal (senha) values (1);
+delete from normal;
+delete from preferencial;
+Select senha from preferencial where status is null order by senha ASC;
+Select max(id) from preferencial;
+Select senha from preferencial where id = (Select max(id) from preferencial) and status is null;
